@@ -65,9 +65,9 @@ geodist 22.6614546 120.2821877 y x, generate(num_distance_kaohsiung)
 keep if num_distance_shenou<=50 | num_distance_taichung<=50 | num_distance_kaohsiung<=50
 
 //eliminate outlier
-egen p1=pctile(predicted_value),p(1)
-egen p99=pctile(predicted_value),p(99)
-drop if predicted_value<p1 | predicted_value>p99
+egen p1=pctile(var1pred),p(1)
+egen p99=pctile(var1pred),p(99)
+drop if var1pred<p1 | var1pred>p99
 
 
 //handling date and month
@@ -93,9 +93,9 @@ qui gen string_y=string(y)
 qui egen coordinate=concat(string_x string_y),punct(" ")
 //get monthly average
 
-qui egen month_avg=mean(predicted_value), by(month_R coordinate)
+qui egen month_avg=mean(var1pred), by(month_R coordinate)
 qui gen log_month_avg=log(month_avg)
-//qui gen log_predicted_value=log(predicted_value)
+//qui gen log_var1pred=log(var1pred)
 //Label each variable
 //label variable R "date since 2007/9/30"
 label variable num_distance_shenou "distance to shenou in km"
