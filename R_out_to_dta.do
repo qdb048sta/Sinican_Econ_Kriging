@@ -8,7 +8,7 @@ foreach poll of local POLL{
 		foreach f of local files{
 		    import delimited "D:\User_Data\Desktop\kan-2\kriging\R_Kriging\\`poll'\\`v'\\`f'",clear
 			gen date="`f'"
-			append using "D:\User_Data\Desktop\kan-2\kriging\\`poll'_`v'_R.dta"
+			append using "D:\User_Data\Desktop\kan-2\kriging\\`poll'_`v'_R.dta",force
 			save "D:\User_Data\Desktop\kan-2\kriging\\`poll'_`v'_R.dta",replace
 		}
 		use "D:\User_Data\Desktop\kan-2\kriging\\`poll'_`v'_R.dta",clear
