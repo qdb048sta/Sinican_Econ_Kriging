@@ -1,5 +1,5 @@
 clear
-local POLL="PM2.5 PM10 SO2 NO NOx NO2 O3 CO"
+local POLL="PM2.5 PM10 NO2"
 local value="avg max"
 foreach poll of local POLL{
     foreach v of local value{
