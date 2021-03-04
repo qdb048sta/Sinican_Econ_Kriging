@@ -1,6 +1,6 @@
 clear
-local POLL="PM2.5 PM10 NO2"
-local value="avg max"
+local POLL="PM10"
+local value="max"
 foreach poll of local POLL{
     foreach v of local value{
 	    local files: dir "E:\PM\Kriging\R_Kriging\\`poll'\\`v'" files "*.csv"
@@ -16,6 +16,7 @@ foreach poll of local POLL{
 		drop date 
 		rename date2 date
 		save "D:\User_Data\Desktop\kriging\\`poll'_`v'_R.dta",replace
+		clear
 	    
 	}
 	    
