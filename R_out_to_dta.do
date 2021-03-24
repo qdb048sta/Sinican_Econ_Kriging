@@ -1,21 +1,21 @@
 clear
-local POLL="PM10"
-local value="max"
+local POLL="PM2.5 PM10 SO2 NO2"
+local value="avg max"
 foreach poll of local POLL{
     foreach v of local value{
 	    local files: dir "E:\PM\Kriging\R_Kriging\\`poll'\\`v'" files "*.csv"
-		save "D:\User_Data\Desktop\kriging\\`poll'_`v'_R.dta", replace emptyok
+		save "D:\User_Data\Desktop\kriging\\`poll'_`v'_R_Linkou.dta", replace emptyok
 		foreach f of local files{
 		    import delimited "E:\PM\Kriging\R_Kriging\\`poll'\\`v'\\`f'",clear
 			gen date="`f'"
-			append using "D:\User_Data\Desktop\kriging\\`poll'_`v'_R.dta",force
-			save "D:\User_Data\Desktop\kriging\\`poll'_`v'_R.dta",replace
+			append using "D:\User_Data\Desktop\kriging\\`poll'_`v'_R_Linkou.dta",force
+			save "D:\User_Data\Desktop\kriging\\`poll'_`v'_R_Linkou.dta",replace
 		}
-		use "D:\User_Data\Desktop\kriging\\`poll'_`v'_R.dta",clear
+		use "D:\User_Data\Desktop\kriging\\`poll'_`v'_R.dta_Linkou",clear
 		gen date2=substr(date,1,8)
 		drop date 
 		rename date2 date
-		save "D:\User_Data\Desktop\kriging\\`poll'_`v'_R.dta",replace
+		save "D:\User_Data\Desktop\kriging\\`poll'_`v'_R.dta_Linkou",replace
 		clear
 	    
 	}
